@@ -1,10 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-useless-escape */
-/* eslint-disable linebreak-style */
-/* eslint-disable no-console */
 const express = require('express');
 const mongoose = require('mongoose');
-/* const cors = require('cors'); */
+const helmet = require('helmet');
 const { celebrate, Joi, errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { login, createUser } = require('./controllers/users');
@@ -16,6 +12,8 @@ require('dotenv').config();
 
 const app = express();
 
+app.use(helmet());
+
 mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -24,13 +22,6 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
 });
 
 app.use(express.json());
-
-/* app.use(cors({
-  Origin: 'http://localhost:3000',
-  credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  exposedHeaders: 'Origin, Referer, Authorization, X-Requested-With, Content-Type, Accept',
-})); */
 
 app.use(requestLogger);
 
@@ -78,6 +69,4 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-});
+app.listen(PORT);

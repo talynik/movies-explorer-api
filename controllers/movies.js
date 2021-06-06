@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable eqeqeq */
 const Movie = require('../models/movie');
 const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
@@ -30,7 +28,7 @@ module.exports.removeMovie = (req, res, next) => {
       if (!movie) {
         throw new NotFoundError('Фильм с указанным _id не найдена');
       }
-      if (movie.owner == req.user._id) {
+      if (movie.owner === req.user._id) {
         Movie.findByIdAndRemove(req.params.movieId)
           .then((movieRemove) => {
             res.status(200).send({ data: movieRemove });

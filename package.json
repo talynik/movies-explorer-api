@@ -4,7 +4,7 @@
   "description": "diplom_backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "npx eslint ."
   },
@@ -32,6 +32,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
+    "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.12",
     "validator": "^13.6.0",

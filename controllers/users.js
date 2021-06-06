@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable indent */
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -56,9 +54,9 @@ module.exports.createUser = (req, res, next) => {
     }))
     .catch((err) => {
       if (err.name === 'MongoError' && err.code === 11000) {
-        const err = new Error('Пользователь с таким email уже существует');
-        err.statusCode = 409;
-        next(err);
+        const error = new Error('Пользователь с таким email уже существует');
+        error.statusCode = 409;
+        next(error);
       }
       if (err.name === 'ValidationError') {
         throw new BadRequestError('Переданы некорректные данные при создании пользователя');
