@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-const rateLimit = require('express-rate-limit');
+const limiter = require('./middlewares/configLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 
@@ -17,10 +17,6 @@ mongoose.connect(MONGO_URL, {
   useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-});
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
 });
 
 app.use(express.json());
