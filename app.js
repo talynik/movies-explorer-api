@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
+const rateLimit = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 
@@ -11,18 +12,24 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(helmet());
-
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
 
 app.use(express.json());
 
 app.use(requestLogger);
+
+app.use(limiter);
+
+app.use(helmet());
 
 app.use(routes);
 
@@ -32,7 +39,6 @@ app.use(errors());
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-
   res
     .status(statusCode)
     .send({

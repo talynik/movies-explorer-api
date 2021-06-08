@@ -9,6 +9,6 @@ __________________________
 
   Делам всё публично и доступно.
 
-  Доменное имя: http://api.talynik.diploma.nomoredomains.club
+  Доменное имя: https://api.talynik.diploma.nomoredomains.club
 
-  Публичный IP-адрес: http://217.28.231.218
+  Публичный IP-адрес: https://217.28.231.218
