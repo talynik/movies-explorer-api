@@ -23,7 +23,7 @@ mongoose.connect(MONGO_URL, {
 app.use(express.json());
 
 app.use(cors({
-  Origin: 'http://localhost:3000',
+  Origin: 'https://talynik.diploma.nomoredomains.club',
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   exposedHeaders: 'Origin, Referer, Authorization, X-Requested-With, Content-Type, Accept',
