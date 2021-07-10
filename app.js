@@ -7,7 +7,7 @@ const limiter = require('./middlewares/configLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes');
 
-const { PORT = 3005, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/bitfilmsdb' } = process.env;
 
 require('dotenv').config();
 
